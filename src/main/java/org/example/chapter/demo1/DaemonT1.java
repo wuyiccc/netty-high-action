@@ -3,7 +3,6 @@ package org.example.chapter.demo1;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Created by ????? on 2018/8/3.
  */
 public class DaemonT1 {
     public static void main(String[] args)
@@ -16,8 +15,8 @@ public class DaemonT1 {
                 } catch (InterruptedException e) {
                     e.printStackTrace();}}
         }, "Daemon-T");
-        t.setDaemon(true);
+        t.setDaemon(false);
         t.start();
         TimeUnit.SECONDS.sleep(15);
-        System.out.println("??????????????" +(System.nanoTime() - startTime)/1000/1000/1000 + " s");}
+        System.out.println("系统退出, 程序执行" +(System.nanoTime() - startTime)/1000/1000/1000 + " s");}
 }

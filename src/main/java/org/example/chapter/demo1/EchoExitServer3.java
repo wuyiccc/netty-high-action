@@ -11,7 +11,7 @@ import io.netty.handler.logging.LoggingHandler;
 import java.util.logging.Logger;
 
 /**
- * Created by ���ַ� on 2018/8/3.
+ * 方式一: closeFuture().sync()阻塞main线程的执行, 这样netty服务也不会退出
  */
 public class EchoExitServer3 {
 
@@ -32,7 +32,9 @@ public class EchoExitServer3 {
                             p.addLast(new LoggingHandler(LogLevel.INFO));
                         }
                     });
+            // 同步绑定服务端口
             ChannelFuture f = b.bind(18080).sync();
+            // 同步等待服务链路关闭之后才退出 方式一
             f.channel().closeFuture().sync();
         } finally {
             bossGroup.shutdownGracefully();

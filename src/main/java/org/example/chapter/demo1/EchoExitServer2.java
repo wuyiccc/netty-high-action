@@ -8,6 +8,7 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
 
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 
 /**
@@ -16,6 +17,7 @@ import java.util.logging.Logger;
 public class EchoExitServer2 {
 
     static Logger logger = Logger.getLogger(EchoExitServer2.class.getName());
+
     public static void main(String[] args) throws Exception {
         EventLoopGroup bossGroup = new NioEventLoopGroup(1);
         EventLoopGroup workerGroup = new NioEventLoopGroup();
@@ -36,13 +38,13 @@ public class EchoExitServer2 {
             f.channel().closeFuture().addListener(new ChannelFutureListener() {
                 @Override
                 public void operationComplete(ChannelFuture future) throws Exception {
-                    //ҵ���߼�������룬�˴�ʡ��...
-                    logger.info(future.channel().toString() + " ��·�ر�");
+                    logger.info(future.channel().toString() + "链路关闭");
                 }
             });
         } finally {
-//            bossGroup.shutdownGracefully();
-//            workerGroup.shutdownGracefully();
+            workerGroup.shutdownGracefully();
+            //TimeUnit.SECONDS.sleep(120);
+            //bossGroup.shutdownGracefully();
         }
     }
 }

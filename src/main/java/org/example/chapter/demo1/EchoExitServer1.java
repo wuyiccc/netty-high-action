@@ -12,7 +12,6 @@ import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
 
 /**
- * Created by ���ַ� on 2018/8/3.
  */
 public class EchoExitServer1 {
 
