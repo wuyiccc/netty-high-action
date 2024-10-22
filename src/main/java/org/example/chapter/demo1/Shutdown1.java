@@ -3,13 +3,12 @@ package org.example.chapter.demo1;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Created by ���ַ� on 2018/8/3.
+ *
  */
 public class Shutdown1 {
 
-    public static void main(String [] args) throws Exception
-    {
-        Runtime.getRuntime().addShutdownHook(new Thread(()->
+    public static void main(String[] args) throws Exception {
+        Runtime.getRuntime().addShutdownHook(new Thread(() ->
         {
             System.out.println("ShutdownHook execute start...");
             System.out.println("Netty NioEventLoopGroup shutdownGracefully...");
@@ -19,8 +18,9 @@ public class Shutdown1 {
                 e.printStackTrace();
             }
             System.out.println("ShutdownHook execute end...");
-        },""));
-        TimeUnit.SECONDS.sleep(7);
+        }, ""));
+        TimeUnit.SECONDS.sleep(30);
+        System.out.println("程序准备退出");
         System.exit(0);
     }
 }
