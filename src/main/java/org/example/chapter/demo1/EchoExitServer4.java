@@ -8,6 +8,7 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
 
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 
 /**
@@ -44,6 +45,9 @@ public class EchoExitServer4 {
                     logger.info(future.channel().toString() + "线程服务退出");
                 }
             });
+            //TimeUnit.SECONDS.sleep(30);
+            // 关闭channel, 触发Listener监听器
+            f.channel().close();
         } finally {
 //            bossGroup.shutdownGracefully();
 //            workerGroup.shutdownGracefully();
