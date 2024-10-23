@@ -35,7 +35,7 @@ public class EchoExitServer4 {
                             p.addLast(new LoggingHandler(LogLevel.INFO));
                         }
                     });
-            ChannelFuture f = b.bind(18080).sync();
+            ChannelFuture f = b.bind(18081).sync();
             f.channel().closeFuture().addListener(new ChannelFutureListener() {
                 @Override
                 public void operationComplete(ChannelFuture future) throws Exception {
@@ -45,9 +45,9 @@ public class EchoExitServer4 {
                     logger.info(future.channel().toString() + "线程服务退出");
                 }
             });
-            //TimeUnit.SECONDS.sleep(30);
+            TimeUnit.SECONDS.sleep(30);
             // 关闭channel, 触发Listener监听器
-            f.channel().close();
+            //f.channel().close();
         } finally {
 //            bossGroup.shutdownGracefully();
 //            workerGroup.shutdownGracefully();

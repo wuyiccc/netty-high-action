@@ -55,6 +55,8 @@ public final class ClientPool {
                 });
         for(int i = 0; i < poolSize; i++)
         {
+            // 客户端使用同一个bootstrap建立链接, 重用EventLoopGroup,
+            // 减少资源损耗, 相对于之前的案例会创建100个线程, 该案例只会创建 cpu核心数(12) * 2 = 24 个EventLoop线程, 与TCP链接数量无关
             b.connect(HOST, PORT).sync();
         }
     }
